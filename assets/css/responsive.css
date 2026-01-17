@@ -1,0 +1,134 @@
+@media (max-width: 1024px) {
+    .hero-description {
+        max-width: 100%;
+    }
+
+    .soft-skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .soft-skills-grid .soft-skill-item:nth-child(5) {
+        grid-column: 1;
+    }
+
+    .soft-skills-grid .soft-skill-item:nth-child(6) {
+        grid-column: 2;
+    }
+
+    .skills-grid,
+    .projects-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem 1.5rem;
+    }
+
+    .hero {
+        padding: 6rem 1.5rem 3rem;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.25rem;
+    }
+
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    section {
+        padding: 4rem 0;
+    }
+
+    .skills-grid,
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .soft-skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .education-timeline {
+        padding-right: 1.5rem;
+    }
+
+    .timeline-item {
+        padding-right: 2.5rem;
+    }
+
+    .timeline-dot {
+        right: 0;
+        transform: translateX(50%);
+    }
+
+    .section-title {
+        font-size: 2rem;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 0.875rem 1rem;
+    }
+
+    .brand-name {
+        font-size: 1.1rem;
+    }
+
+    .hero {
+        padding: 5rem 1rem 2rem;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    .soft-skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .soft-skills-grid .soft-skill-item:nth-child(5),
+    .soft-skills-grid .soft-skill-item:nth-child(6) {
+        grid-column: span 1;
+    }
+
+    .skill-card,
+    .project-card {
+        padding: 1.5rem;
+    }
+
+    .education-timeline {
+        padding-right: 1rem;
+    }
+
+    .timeline-item {
+        padding-right: 2rem;
+    }
+
+    .timeline-dot {
+        right: 0;
+        transform: translateX(50%);
+    }
+}
+

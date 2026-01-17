@@ -1,0 +1,62 @@
+.btn {
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-family: inherit;
+    text-decoration: none;
+}
+
+.btn-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    box-shadow: 0 4px 20px rgba(249, 115, 22, 0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(249, 115, 22, 0.6);
+}
+
+.btn-secondary {
+    background: var(--glass-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--glass-border);
+}
+
+.btn-secondary:hover {
+    background: var(--surface-color);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(99, 102, 241, 0.3);
+}
+
+.btn-whatsapp:hover {
+    background: rgba(37, 211, 102, 0.2);
+    border-color: #25d366;
+    box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+}
+
+.btn-gmail:hover {
+    background: rgba(234, 67, 53, 0.2);
+    border-color: #ea4335;
+    box-shadow: 0 8px 30px rgba(234, 67, 53, 0.4);
+}
+
+.btn-github:hover {
+    background: rgba(51, 51, 51, 0.3);
+    border-color: #333;
+    box-shadow: 0 8px 30px rgba(51, 51, 51, 0.4);
+}
+
