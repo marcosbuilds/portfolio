@@ -1,1 +1,1 @@
-
+console.log('Portfolio initialized');
