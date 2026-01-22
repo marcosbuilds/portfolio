@@ -6,6 +6,28 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+    
+    * {
+        scroll-margin-top: 80px;
+    }
+    
+    @media (min-width: 768px) {
+        html {
+            scroll-behavior: smooth;
+        }
+    }
+}
+
+body {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
 }
 
 body {

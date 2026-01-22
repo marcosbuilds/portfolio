@@ -1,4 +1,3 @@
-/* CSS Reset & Variables */
 :root {
     --primary-color: #f97316;
     --secondary-color: #ea580c;
@@ -70,7 +69,6 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* Background Gradient */
 body::before {
     content: '';
     position: fixed;
@@ -100,7 +98,6 @@ body::before {
     }
 }
 
-/* Glass Effect */
 .glass {
     background: var(--glass-bg);
     backdrop-filter: blur(16px) saturate(180%);
@@ -109,7 +106,6 @@ body::before {
     box-shadow: var(--shadow);
 }
 
-/* Header */
 .header {
     position: fixed;
     top: 0;
@@ -219,7 +215,6 @@ body::before {
     transition: transform 0.3s ease;
 }
 
-/* Hero Section */
 .hero {
     min-height: 100vh;
     display: flex;
@@ -427,7 +422,6 @@ body::before {
 
 
 
-/* Contact Panel */
 .contact-panel {
     position: fixed;
     top: 0;
@@ -578,7 +572,6 @@ body::before {
     color: var(--text-secondary);
 }
 
-/* Sections */
 section {
     padding: 6rem 0;
     position: relative;
@@ -610,7 +603,6 @@ section {
     filter: grayscale(0);
 }
 
-/* Skills Section */
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -708,7 +700,6 @@ section {
     font-weight: 400;
 }
 
-/* Soft Skills Section */
 .soft-skills-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -753,7 +744,6 @@ section {
     font-size: 1rem;
 }
 
-/* Projects Section */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -795,7 +785,6 @@ section {
     font-size: 1.05rem;
 }
 
-/* Education Section */
 .education-timeline {
     max-width: 900px;
     margin: 0 auto;
@@ -858,7 +847,6 @@ section {
     font-size: 0.95rem;
 }
 
-/* Footer */
 .footer {
     padding: 3rem 2rem;
     text-align: center;
@@ -867,7 +855,6 @@ section {
     background: rgba(10, 14, 39, 0.5);
 }
 
-/* Scrollbar */
 ::-webkit-scrollbar {
     width: 10px;
 }
@@ -886,7 +873,6 @@ section {
     background: var(--primary-color);
 }
 
-/* Responsive */
 @media (max-width: 1024px) {
     .hero-content {
         grid-template-columns: 1fr;

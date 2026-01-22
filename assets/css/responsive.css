@@ -118,6 +118,40 @@
         padding: 1.5rem;
     }
 
+    .project-image-wrapper {
+        margin-bottom: 1rem;
+    }
+
+    .project-image {
+        object-fit: cover;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+        image-rendering: high-quality;
+    }
+
+    .project-card:hover .project-image {
+        transform: scale(1.25) translateY(-20px);
+        z-index: 1000;
+    }
+
+    .project-image-wrapper {
+        z-index: 5;
+    }
+
+    .project-header {
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+    }
+
+    .project-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .project-card h3 {
+        font-size: 1.25rem;
+    }
+
     .education-timeline {
         padding-right: 1rem;
     }
