@@ -57,11 +57,33 @@
         .content-section {
             max-width: 1000px;
             margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        @media (max-width: 1024px) {
+            .content-section {
+                max-width: 100%;
+                padding: 0 1.5rem;
+            }
+        }
+        
+        .comments-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .comments-title {
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            margin: 0;
         }
         
         .comment-button-container {
-            margin-bottom: 3rem;
-            text-align: center;
+            margin: 0;
         }
         
         .comment-panel {
@@ -129,14 +151,22 @@
         }
         
         .comment-item {
-            padding: 0;
-            border-bottom: 1px solid var(--glass-border);
-            padding-bottom: 2rem;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+        
+        .comment-item:hover {
+            transform: translateY(-2px);
+            border-color: var(--primary-color);
+            box-shadow: 0 8px 24px rgba(249, 115, 22, 0.1);
         }
         
         .comment-item:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
+            margin-bottom: 0;
         }
         
         .comment-header {
@@ -187,6 +217,63 @@
             font-size: 1.05rem;
             margin-top: 1rem;
             padding-left: 64px;
+        }
+        
+        @media (max-width: 768px) {
+            .comments-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .comments-title {
+                font-size: 1.5rem;
+            }
+            
+            .comment-button-container {
+                width: 100%;
+            }
+            
+            .comment-button-container .btn {
+                width: 100%;
+            }
+            
+            .comment-text {
+                padding-left: 0;
+                margin-top: 1.5rem;
+            }
+            
+            .comment-header {
+                flex-wrap: wrap;
+            }
+            
+            .comment-date {
+                width: 100%;
+                margin-top: 0.5rem;
+            }
+            
+            .comment-panel {
+                padding: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .comment-item {
+                padding: 1.5rem;
+            }
+            
+            .comment-avatar {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .comment-name {
+                font-size: 1rem;
+            }
+            
+            .comment-text {
+                font-size: 0.95rem;
+            }
         }
         
         .empty-state {
@@ -242,10 +329,6 @@
             </div>
             
             <div class="content-section">
-                <div class="comment-button-container">
-                    <button id="showCommentPanel" class="btn btn-primary">Quero comentar</button>
-                </div>
-                
                 <div id="commentPanel" class="comment-panel glass">
                     <h2 style="font-size: 1.8rem; margin-bottom: 2rem; color: var(--text-primary);">Deixe seu comentário</h2>
                     <form id="commentForm">
@@ -261,7 +344,7 @@
                             <label class="form-label" for="commentText">Comentário <span style="color: var(--text-secondary); font-weight: 400;">(obrigatório)</span></label>
                             <textarea id="commentText" class="form-input form-textarea" required placeholder="Seu comentário aqui..."></textarea>
                         </div>
-                        <div style="display: flex; gap: 1rem;">
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
                             <button type="submit" class="btn btn-primary">Enviar Comentário</button>
                             <button type="button" id="cancelComment" class="btn btn-secondary">Cancelar</button>
                         </div>
@@ -269,7 +352,12 @@
                 </div>
                 
                 <div class="comments-section">
-                    <h2 style="font-size: 1.8rem; margin-bottom: 2rem; color: var(--text-primary);">Comentários</h2>
+                    <div class="comments-header">
+                        <h2 class="comments-title">Comentários</h2>
+                        <div class="comment-button-container">
+                            <button id="showCommentPanel" class="btn btn-primary">Quero comentar</button>
+                        </div>
+                    </div>
                     <div id="commentsList" class="comments-list">
                         <div class="empty-state">
                             <div class="empty-state-icon">
@@ -286,10 +374,15 @@
     </section>
 
     <script>
-        async function loadComments() {
+        function loadComments() {
             try {
-                const response = await fetch('../data/comments.json');
-                const comments = await response.json();
+                const comments = JSON.parse(localStorage.getItem('portfolioComments') || '[]');
+                
+                if (!Array.isArray(comments)) {
+                    displayComments([]);
+                    return;
+                }
+                
                 displayComments(comments);
             } catch (error) {
                 console.error('Erro ao carregar comentários:', error);
@@ -297,10 +390,14 @@
             }
         }
         
-        async function saveComment(comment) {
+        function saveComment(comment) {
             try {
-                const response = await fetch('../data/comments.json');
-                const comments = await response.json();
+                const comments = JSON.parse(localStorage.getItem('portfolioComments') || '[]');
+                
+                if (!Array.isArray(comments)) {
+                    comments = [];
+                }
+                
                 comments.unshift(comment);
                 
                 localStorage.setItem('portfolioComments', JSON.stringify(comments));
@@ -308,7 +405,7 @@
                 return comments;
             } catch (error) {
                 console.error('Erro ao salvar comentário:', error);
-                const comments = JSON.parse(localStorage.getItem('portfolioComments') || '[]');
+                const comments = [];
                 comments.unshift(comment);
                 localStorage.setItem('portfolioComments', JSON.stringify(comments));
                 return comments;
@@ -400,7 +497,7 @@
                 date: new Date().toISOString()
             };
             
-            await saveComment(comment);
+            saveComment(comment);
             document.getElementById('commentForm').reset();
             document.getElementById('commentPanel').classList.remove('active');
             loadComments();
