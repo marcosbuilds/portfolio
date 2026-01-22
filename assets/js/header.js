@@ -1,10 +1,100 @@
 const header = document.getElementById('header');
 const brandNameHeader = document.getElementById('brandNameHeader');
 const brandNameHero = document.getElementById('brandNameHero');
+const navbarBrand = document.getElementById('navbarBrand');
+const dropdownMenu = document.getElementById('dropdownMenu');
 let ticking = false;
+let menuTimeout = null;
+let isMenuPersistent = false;
+
+function showMenu() {
+    if (dropdownMenu) {
+        dropdownMenu.classList.add('active');
+        clearTimeout(menuTimeout);
+        isMenuPersistent = false;
+    }
+}
+
+function hideMenu() {
+    if (dropdownMenu && !isMenuPersistent) {
+        clearTimeout(menuTimeout);
+        menuTimeout = setTimeout(() => {
+            if (!isMenuPersistent && dropdownMenu) {
+                dropdownMenu.classList.remove('active');
+            }
+        }, 1000);
+    }
+}
+
+function keepMenuOpen() {
+    isMenuPersistent = true;
+    clearTimeout(menuTimeout);
+}
+
+function closeMenu() {
+    isMenuPersistent = false;
+    if (dropdownMenu) {
+        dropdownMenu.classList.remove('active');
+    }
+    clearTimeout(menuTimeout);
+}
+
+function initMenuListeners() {
+    const navbar = document.querySelector('.navbar');
+    const themeToggle = document.querySelector('.theme-toggle');
+
+    if (header && dropdownMenu && navbar) {
+        navbar.addEventListener('mouseenter', (e) => {
+            const target = e.target;
+            const isOnThemeToggle = themeToggle && (themeToggle.contains(target) || target === themeToggle || target.closest('.theme-toggle'));
+            if (!isOnThemeToggle) {
+                showMenu();
+            }
+        });
+
+        navbar.addEventListener('mouseleave', (e) => {
+            const relatedTarget = e.relatedTarget;
+            const isGoingToMenu = dropdownMenu && (dropdownMenu.contains(relatedTarget) || relatedTarget === dropdownMenu);
+            const isGoingToThemeToggle = themeToggle && (themeToggle.contains(relatedTarget) || relatedTarget === themeToggle || (relatedTarget && relatedTarget.closest('.theme-toggle')));
+            const isStillOnNavbar = navbar && (navbar.contains(relatedTarget) || relatedTarget === navbar);
+            
+            if (!isGoingToMenu && !isGoingToThemeToggle && !isStillOnNavbar) {
+                hideMenu();
+            }
+        });
+
+        if (navbarBrand) {
+            navbarBrand.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (dropdownMenu.classList.contains('active')) {
+                    closeMenu();
+                } else {
+                    showMenu();
+                }
+            });
+        }
+
+        dropdownMenu.addEventListener('mouseenter', keepMenuOpen);
+        dropdownMenu.addEventListener('mouseleave', closeMenu);
+    }
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMenuListeners);
+} else {
+    initMenuListeners();
+}
+
+document.addEventListener('click', (e) => {
+    if (dropdownMenu && !dropdownMenu.contains(e.target) && 
+        (!navbarBrand || !navbarBrand.contains(e.target)) &&
+        (!header || !header.contains(e.target))) {
+        closeMenu();
+    }
+});
 
 function updateOnScroll() {
-    const currentScroll = window.pageYOffset;
+    const currentScroll = window.pageYOffset || window.scrollY || document.documentElement.scrollTop;
     
     if (header) {
         if (currentScroll > 100) {
@@ -46,7 +136,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         if (href === '#') return;
         
         e.preventDefault();
-        const target = document.querySelector(href);
+        let target = document.querySelector(href);
+        
+        if (href === '#neural-engine') {
+            target = document.getElementById('neural-engine-card');
+        } else if (href === '#other-projects') {
+            target = document.getElementById('other-projects-card');
+        }
+        
         if (target) {
             const headerHeight = headerElement ? headerElement.offsetHeight : 80;
             const targetPosition = target.offsetTop - headerHeight;
@@ -55,6 +152,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 top: targetPosition,
                 behavior: 'smooth'
             });
+            
+            closeMenu();
         }
     });
 });
