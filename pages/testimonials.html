@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedbacks e Comentários | Marcos Pereira</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .page-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        
+        .back-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .back-button:hover {
+            background: var(--primary-color);
+            transform: translateX(-5px);
+            border-color: var(--primary-color);
+        }
+        
+        .back-button svg {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .page-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0;
+        }
+        
+        .content-section {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .comment-button-container {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .comment-panel {
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            margin-bottom: 3rem;
+            display: none;
+        }
+        
+        .comment-panel.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .form-label .optional {
+            color: var(--text-secondary);
+            font-weight: 400;
+            font-size: 0.85rem;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border-radius: 8px;
+            background: var(--surface-color);
+            border: 1px solid var(--glass-border);
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .comments-section {
+            margin-top: 3rem;
+        }
+        
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+        
+        .comment-item {
+            padding: 0;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 2rem;
+        }
+        
+        .comment-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .comment-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .comment-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .comment-info {
+            flex: 1;
+        }
+        
+        .comment-name {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .comment-email {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .comment-date {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        
+        .comment-text {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 1.05rem;
+            margin-top: 1rem;
+            padding-left: 64px;
+        }
+        
+        .empty-state {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .empty-state-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            color: var(--text-secondary);
+            opacity: 0.5;
+        }
+        
+        .empty-state-text {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body data-theme="orange">
+    <header class="header" id="header">
+        <nav class="navbar">
+            <div class="navbar-brand" id="navbarBrand">
+                <a href="../index.html" style="display: flex; align-items: center; gap: 0.875rem; text-decoration: none; color: inherit;">
+                    <div class="brand-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <span class="brand-name hidden" id="brandNameHeader">Marcos Pereira</span>
+                </a>
+            </div>
+            <button class="theme-toggle" aria-label="Alterar tema">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"/>
+                    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+    <section class="testimonials-section" style="padding: 8rem 0 4rem;">
+        <div class="container">
+            <div class="page-header">
+                <a href="../index.html" class="back-button">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                </a>
+                <h1 class="page-title">Feedbacks e Comentários</h1>
+            </div>
+            
+            <div class="content-section">
+                <div class="comment-button-container">
+                    <button id="showCommentPanel" class="btn btn-primary">Quero comentar</button>
+                </div>
+                
+                <div id="commentPanel" class="comment-panel glass">
+                    <h2 style="font-size: 1.8rem; margin-bottom: 2rem; color: var(--text-primary);">Deixe seu comentário</h2>
+                    <form id="commentForm">
+                        <div class="form-group">
+                            <label class="form-label" for="commentName">Nome <span style="color: var(--text-secondary); font-weight: 400;">(obrigatório)</span></label>
+                            <input type="text" id="commentName" class="form-input" required placeholder="Seu nome">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="commentEmail">E-mail <span class="optional">(opcional - estará visível nos comentários)</span></label>
+                            <input type="email" id="commentEmail" class="form-input" placeholder="seu@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="commentText">Comentário <span style="color: var(--text-secondary); font-weight: 400;">(obrigatório)</span></label>
+                            <textarea id="commentText" class="form-input form-textarea" required placeholder="Seu comentário aqui..."></textarea>
+                        </div>
+                        <div style="display: flex; gap: 1rem;">
+                            <button type="submit" class="btn btn-primary">Enviar Comentário</button>
+                            <button type="button" id="cancelComment" class="btn btn-secondary">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="comments-section">
+                    <h2 style="font-size: 1.8rem; margin-bottom: 2rem; color: var(--text-primary);">Comentários</h2>
+                    <div id="commentsList" class="comments-list">
+                        <div class="empty-state">
+                            <div class="empty-state-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                                </svg>
+                            </div>
+                            <p class="empty-state-text">Nenhum comentário ainda. Seja o primeiro a comentar!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        async function loadComments() {
+            try {
+                const response = await fetch('../data/comments.json');
+                const comments = await response.json();
+                displayComments(comments);
+            } catch (error) {
+                console.error('Erro ao carregar comentários:', error);
+                displayComments([]);
+            }
+        }
+        
+        async function saveComment(comment) {
+            try {
+                const response = await fetch('../data/comments.json');
+                const comments = await response.json();
+                comments.unshift(comment);
+                
+                localStorage.setItem('portfolioComments', JSON.stringify(comments));
+                
+                return comments;
+            } catch (error) {
+                console.error('Erro ao salvar comentário:', error);
+                const comments = JSON.parse(localStorage.getItem('portfolioComments') || '[]');
+                comments.unshift(comment);
+                localStorage.setItem('portfolioComments', JSON.stringify(comments));
+                return comments;
+            }
+        }
+        
+        function displayComments(comments) {
+            const commentsList = document.getElementById('commentsList');
+            
+            if (comments.length === 0) {
+                const localComments = JSON.parse(localStorage.getItem('portfolioComments') || '[]');
+                if (localComments.length > 0) {
+                    comments = localComments;
+                }
+            }
+            
+            if (comments.length === 0) {
+                commentsList.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                            </svg>
+                        </div>
+                        <p class="empty-state-text">Nenhum comentário ainda. Seja o primeiro a comentar!</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            commentsList.innerHTML = comments.map(comment => {
+                const initial = comment.name.charAt(0).toUpperCase();
+                const date = new Date(comment.date).toLocaleDateString('pt-BR', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                
+                return `
+                    <div class="comment-item">
+                        <div class="comment-header">
+                            <div class="comment-avatar">${initial}</div>
+                            <div class="comment-info">
+                                <div class="comment-name">${escapeHtml(comment.name)}</div>
+                                ${comment.email ? `<div class="comment-email">${escapeHtml(comment.email)}</div>` : ''}
+                            </div>
+                            <div class="comment-date">${date}</div>
+                        </div>
+                        <div class="comment-text">${escapeHtml(comment.text)}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        document.getElementById('showCommentPanel').addEventListener('click', () => {
+            document.getElementById('commentPanel').classList.add('active');
+            document.getElementById('commentName').focus();
+        });
+        
+        document.getElementById('cancelComment').addEventListener('click', () => {
+            document.getElementById('commentPanel').classList.remove('active');
+            document.getElementById('commentForm').reset();
+        });
+        
+        document.getElementById('commentForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('commentName').value.trim();
+            const email = document.getElementById('commentEmail').value.trim();
+            const text = document.getElementById('commentText').value.trim();
+            
+            if (!name || !text) {
+                alert('Por favor, preencha pelo menos o nome e o comentário.');
+                return;
+            }
+            
+            const comment = {
+                name,
+                email: email || null,
+                text,
+                date: new Date().toISOString()
+            };
+            
+            await saveComment(comment);
+            document.getElementById('commentForm').reset();
+            document.getElementById('commentPanel').classList.remove('active');
+            loadComments();
+        });
+        
+        loadComments();
+    </script>
+    <script src="../assets/js/theme.js"></script>
+    <script src="../assets/js/header.js"></script>
+    <script src="../assets/js/animations.js"></script>
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

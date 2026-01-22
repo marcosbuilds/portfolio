@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Neural Engine | Marcos Pereira</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .page-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        
+        .back-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .back-button:hover {
+            background: var(--primary-color);
+            transform: translateX(-5px);
+            border-color: var(--primary-color);
+        }
+        
+        .back-button svg {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .page-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0;
+        }
+        
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-image {
+            width: 100%;
+            border-radius: var(--border-radius);
+            margin: 3rem 0;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .section-heading {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 4rem 0 1.5rem;
+        }
+        
+        .paragraph {
+            color: var(--text-secondary);
+            line-height: 1.9;
+            font-size: 1.15rem;
+            margin-bottom: 2rem;
+            max-width: 900px;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .feature-card {
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            transition: var(--transition);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 8px 24px rgba(249, 115, 22, 0.2);
+        }
+        
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+        
+        .feature-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .metric-card {
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+        
+        .metric-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+        
+        .metric-label {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        .highlight-box {
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(251, 146, 60, 0.1));
+            border: 1px solid var(--primary-color);
+            margin: 3rem 0;
+        }
+        
+        .highlight-text {
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            line-height: 1.8;
+            font-weight: 500;
+        }
+        
+        .comparison-section {
+            margin: 4rem 0;
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .comparison-item {
+            text-align: center;
+        }
+        
+        .comparison-label {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .comparison-bar {
+            height: 200px;
+            width: 100%;
+            max-width: 80px;
+            margin: 0 auto;
+            background: var(--surface-color);
+            border-radius: 8px 8px 0 0;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+        }
+        
+        .comparison-fill {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: linear-gradient(180deg, var(--primary-color), var(--accent-color));
+            border-radius: 8px 8px 0 0;
+            transition: height 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding-bottom: 0.5rem;
+            height: 0;
+        }
+        
+        .comparison-value {
+            margin-top: 1rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+        }
+        
+        .cta-section {
+            margin: 4rem 0;
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(251, 146, 60, 0.15));
+            border: 2px solid var(--primary-color);
+            text-align: center;
+        }
+        
+        .cta-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        
+        .cta-text {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body data-theme="orange">
+    <header class="header" id="header">
+        <nav class="navbar">
+            <div class="navbar-brand" id="navbarBrand">
+                <a href="../index.html" style="display: flex; align-items: center; gap: 0.875rem; text-decoration: none; color: inherit;">
+                    <div class="brand-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <span class="brand-name hidden" id="brandNameHeader">Marcos Pereira</span>
+                </a>
+            </div>
+            <button class="theme-toggle" aria-label="Alterar tema">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"/>
+                    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+    <section class="neural-engine-section" style="padding: 8rem 0 4rem;">
+        <div class="container">
+            <div class="page-header">
+                <a href="../index.html" class="back-button">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                </a>
+                <h1 class="page-title">Neural Engine</h1>
+            </div>
+            
+            <div class="content-section">
+                <img src="../assets/img/neural-engine-interface.png" alt="Neural Engine Interface" class="hero-image">
+                
+                <p class="paragraph" style="font-size: 1.3rem; color: var(--text-primary); font-weight: 500;">
+                    Sistema de atendimento inteligente que utiliza inteligência artificial avançada para atuar diretamente no WhatsApp empresarial.
+                </p>
+                
+                <div class="metrics-grid">
+                    <div class="metric-card glass">
+                        <div class="metric-number">100+</div>
+                        <div class="metric-label">Mensagens simultâneas</div>
+                    </div>
+                    <div class="metric-card glass">
+                        <div class="metric-number">0</div>
+                        <div class="metric-label">Gargalos em testes</div>
+                    </div>
+                    <div class="metric-card glass">
+                        <div class="metric-number">24/7</div>
+                        <div class="metric-label">Disponibilidade</div>
+                    </div>
+                    <div class="metric-card glass">
+                        <div class="metric-number">100%</div>
+                        <div class="metric-label">Conformidade Meta</div>
+                    </div>
+                </div>
+                
+                <h2 class="section-heading">Por Que Neural Engine é Diferente?</h2>
+                <p class="paragraph" style="font-size: 1.25rem; font-weight: 600; color: var(--text-primary);">
+                    Enquanto modelos como GPT-5 são projetados para conversas genéricas, o Neural Engine foi especificamente treinado para atendimento empresarial. Não é apenas mais uma IA - é uma solução completa que entende o contexto do seu negócio.
+                </p>
+                
+                <div class="comparison-section glass">
+                    <h3 style="font-size: 1.6rem; margin-bottom: 2rem; color: var(--text-primary); text-align: center;">Comparação de Performance</h3>
+                    <div class="comparison-grid">
+                        <div class="comparison-item">
+                            <div class="comparison-label">Mensagens Simultâneas</div>
+                            <div class="comparison-bar">
+                                <div class="comparison-fill" data-height="100%" style="height: 0;">100+</div>
+                            </div>
+                            <div class="comparison-value">Neural Engine</div>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-label">Mensagens Simultâneas</div>
+                            <div class="comparison-bar">
+                                <div class="comparison-fill" data-height="60%" style="height: 0;">~60</div>
+                            </div>
+                            <div class="comparison-value">Soluções Tradicionais</div>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-label">Taxa de Sucesso</div>
+                            <div class="comparison-bar">
+                                <div class="comparison-fill" data-height="98%" style="height: 0;">98%</div>
+                            </div>
+                            <div class="comparison-value">Neural Engine</div>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-label">Taxa de Sucesso</div>
+                            <div class="comparison-bar">
+                                <div class="comparison-fill" data-height="75%" style="height: 0;">75%</div>
+                            </div>
+                            <div class="comparison-value">Média do Mercado</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h2 class="section-heading">Como Funciona</h2>
+                <p class="paragraph">
+                    O Neural Engine foi desenvolvido em Python para máxima eficiência e confiabilidade. O sistema gerencia conversas, cria filas de atendimento inteligentes e responde de forma natural e humanizada, utilizando modelos personalizados que garantem total conformidade com as diretrizes da Meta.
+                </p>
+                
+                <p class="paragraph" style="background: rgba(249, 115, 22, 0.1); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--primary-color);">
+                    <strong style="color: var(--primary-color);">Diferencial Único:</strong> Diferente de APIs que limitam funcionalidades, o Neural Engine atua diretamente no WhatsApp em tempo real no computador. Isso significa controle total, sem dependências externas e com performance que supera soluções baseadas em APIs.
+                </p>
+                
+                <div class="feature-grid">
+                    <div class="feature-card glass">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                            </svg>
+                        </div>
+                        <div class="feature-title">Painel Intuitivo</div>
+                        <div class="feature-description">Configuração completa e personalização para atendimento ou suporte técnico através de interface amigável.</div>
+                    </div>
+                    
+                    <div class="feature-card glass">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                        <div class="feature-title">Gerenciamento Inteligente</div>
+                        <div class="feature-description">Criação automática de filas de atendimento e distribuição eficiente de conversas.</div>
+                    </div>
+                    
+                    <div class="feature-card glass">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                            </svg>
+                        </div>
+                        <div class="feature-title">Respostas Humanizadas</div>
+                        <div class="feature-description">Modelos personalizados que garantem respostas naturais e contextualizadas.</div>
+                    </div>
+                    
+                    <div class="feature-card glass">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                            </svg>
+                        </div>
+                        <div class="feature-title">Alta Performance</div>
+                        <div class="feature-description">Capacidade de processar centenas de mensagens simultâneas sem comprometer a qualidade.</div>
+                    </div>
+                </div>
+                
+                <div class="highlight-box">
+                    <p class="highlight-text">
+                        <strong style="color: var(--primary-color);">Resultados Comprovados:</strong> Em testes rigorosos, o Neural Engine conseguiu gerenciar atendimento de 100+ mensagens simultâneas sem gargalos, podendo ultrapassar bem mais. O sistema demonstra capacidade de substituir efetivamente equipes em massa, oferecendo atendimento consistente e de alta qualidade 24/7.
+                    </p>
+                </div>
+                
+                <h2 class="section-heading">Tecnologia de Ponta</h2>
+                <p class="paragraph">
+                    Desenvolvido principalmente em Python, o Neural Engine utiliza modelos de linguagem natural personalizados, inspirados na arquitetura de sistemas como GPT-5, mas otimizados especificamente para atendimento empresarial. O sistema atua diretamente no WhatsApp em tempo real no computador em que for trabalhar, abrindo e fechando conversas com cliques rápidos automatizados, garantindo máxima eficiência e escalabilidade.
+                </p>
+                
+                <p class="paragraph">
+                    <strong style="color: var(--primary-color);">Vantagem Competitiva:</strong> Enquanto outras soluções dependem de APIs limitadas, o Neural Engine oferece controle total sobre o processo de atendimento. Isso significa personalização completa, adaptação rápida às necessidades do seu negócio e performance superior.
+                </p>
+                
+                <div class="cta-section">
+                    <h3 class="cta-title">Pronto para Transformar seu Atendimento?</h3>
+                    <p class="cta-text">
+                        Neural Engine não é apenas uma ferramenta - é uma revolução no atendimento ao cliente. Reduza custos, aumente eficiência e ofereça uma experiência superior aos seus clientes.
+                    </p>
+                    <a href="https://wa.me/5593991050810" target="_blank" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Falar com Especialista</a>
+                </div>
+                
+                <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--glass-border);">
+                    <a href="../index.html#projects" class="btn btn-primary">Voltar aos Projetos</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const fills = document.querySelectorAll('.comparison-fill');
+                fills.forEach((fill, index) => {
+                    const height = fill.getAttribute('data-height') || fill.style.height || '100%';
+                    fill.style.height = '0';
+                    setTimeout(() => {
+                        fill.style.height = height;
+                    }, index * 200);
+                });
+            }, 300);
+        });
+    </script>
+    <script src="../assets/js/theme.js"></script>
+    <script src="../assets/js/header.js"></script>
+    <script src="../assets/js/animations.js"></script>
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>
