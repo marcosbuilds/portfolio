@@ -10,16 +10,35 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body data-theme="orange">
-    <!-- Header/Navbar -->
     <header class="header" id="header">
         <nav class="navbar">
-            <div class="navbar-brand">
+            <div class="navbar-brand" id="navbarBrand">
                 <div class="brand-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
                     </svg>
                 </div>
                 <span class="brand-name hidden" id="brandNameHeader">Marcos Pereira</span>
+            </div>
+            <div class="dropdown-menu" id="dropdownMenu">
+                <div class="menu-indicator"></div>
+                <div class="menu-content">
+                    <div class="menu-column">
+                        <a href="pages/about.html" class="menu-item">Sobre mim</a>
+                        <a href="pages/neural-engine.html" class="menu-item">Sobre Neural Engine</a>
+                        <a href="pages/other-projects.html" class="menu-item">Sobre outros projetos</a>
+                    </div>
+                    <div class="menu-column">
+                        <a href="pages/testimonials.html" class="menu-item">Feedbacks e comentários</a>
+                        <a href="pages/experience.html" class="menu-item">Experiência profissional</a>
+                        <a href="#contact" class="menu-item">Contato</a>
+                    </div>
+                    <div class="menu-column">
+                        <a href="pages/skills.html" class="menu-item">Habilidades técnicas</a>
+                        <a href="https://github.com/marcosbuilds/portfolio" target="_blank" class="menu-item">Portfólio completo</a>
+                        <a href="#blog" class="menu-item">Artigos e insights</a>
+                    </div>
+                </div>
             </div>
             <button class="theme-toggle" aria-label="Alterar tema">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -30,7 +49,6 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content container">
             <div class="hero-text">
@@ -47,8 +65,8 @@
                 </h1>
                 <p class="hero-subtitle">Programador | Desenvolvedor de Software</p>
                 <p class="hero-description">
-                    Programador com formação em Informática, experiência prática em projetos pessoais e 
-                    desenvolvimento de soluções com Inteligência Artificial.
+                    Desenvolvedor com formação técnica, experiência prática em projetos reais e 
+                    especialização em soluções tecnológicas avançadas.
                 </p>
                 <div class="hero-buttons">
                     <a href="https://wa.me/5593991050810" target="_blank" class="btn btn-secondary btn-whatsapp">
@@ -68,7 +86,6 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
     <section class="skills-section" id="skills">
         <div class="container">
             <h2 class="section-title">
@@ -109,11 +126,11 @@
                                 <path d="M2 12l10 5 10-5"/>
                             </svg>
                         </div>
-                        <h3>Inteligência Artificial</h3>
+                        <h3>Tecnologias Avançadas</h3>
                     </div>
                     <div class="skill-items">
-                        <span class="skill-badge">Integração de IA</span>
-                        <span class="skill-badge">Automação inteligente</span>
+                        <span class="skill-badge">Integração de Sistemas</span>
+                        <span class="skill-badge">Automação de Processos</span>
                     </div>
                 </div>
                 <div class="skill-card glass">
@@ -175,88 +192,48 @@
         </div>
     </section>
 
-    <!-- Soft Skills Section -->
-    <section class="soft-skills-section" id="soft-skills">
-        <div class="container">
-            <h2 class="section-title">
-                <span class="title-icon">💡</span>
-                Habilidades Interpessoais
-            </h2>
-            <div class="soft-skills-grid">
-                <div class="soft-skill-item glass">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                        <circle cx="9" cy="7" r="4"/>
-                        <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
-                    </svg>
-                    <span>Trabalho em equipe</span>
-                </div>
-                <div class="soft-skill-item glass">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M9 11l3 3L22 4"/>
-                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
-                    </svg>
-                    <span>Tomada de decisões</span>
-                </div>
-                <div class="soft-skill-item glass">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-                    </svg>
-                    <span>Adaptabilidade</span>
-                </div>
-                <div class="soft-skill-item glass">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                    </svg>
-                    <span>Inteligência emocional</span>
-                </div>
-                <div class="soft-skill-item glass">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                        <circle cx="9" cy="7" r="4"/>
-                        <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
-                    </svg>
-                    <span>Liderança</span>
-                </div>
-                <div class="soft-skill-item glass">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"/>
-                        <polyline points="12 6 12 12 16 14"/>
-                    </svg>
-                    <span>Organização</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
     <section class="projects-section" id="projects">
+        <div id="neural-engine" style="position: absolute; top: -100px;"></div>
+        <div id="other-projects" style="position: absolute; top: -100px;"></div>
         <div class="container">
             <h2 class="section-title">
                 <span class="title-icon">🚀</span>
                 Projetos Pessoais
             </h2>
             <div class="projects-grid">
-                <div class="project-card glass featured">
-                    <div class="project-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-                            <line x1="12" y1="22.08" x2="12" y2="12"/>
-                        </svg>
-                    </div>
+                <div class="project-card glass featured" id="neural-engine-card">
                     <span class="project-badge">Projeto Prioritário</span>
-                    <h3>Aurora AI</h3>
-                    <p>Inteligência Artificial que atua diretamente no WhatsApp, desenvolvida para automatizar e otimizar interações e processos através de conversas inteligentes.</p>
-                </div>
-                <div class="project-card glass">
-                    <div class="project-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                        </svg>
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                                <line x1="12" y1="22.08" x2="12" y2="12"/>
+                            </svg>
+                        </div>
+                        <h3>Neural Engine</h3>
                     </div>
-                    <h3>Outros Projetos</h3>
-                    <p>Outros projetos desenvolvidos para fins de estudos e aprendizado contínuo, utilizando Python, JavaScript e outras tecnologias modernas.</p>
+                    <div class="project-image-wrapper">
+                        <img src="assets/img/neural-engine-interface.png" alt="Neural Engine - Interface" class="project-image" loading="lazy" decoding="async">
+                    </div>
+                    <p>Neural Engine utiliza inteligência artificial avançada para atuar em atendimento empresarial diretamente no WhatsApp. Painel de configuração intuitivo permite personalização completa para atendimento ou suporte técnico. Desenvolvido em Python, gerencia conversas, cria filas de atendimento e responde de forma natural, utilizando modelos personalizados que garantem conformidade com as diretrizes da Meta. Em testes, conseguiu gerenciar atendimento de 100+ mensagens simultâneas sem gargalos, podendo ultrapassar bem mais, substituindo efetivamente equipes em massa.</p>
+                    <a href="pages/neural-engine.html" class="btn btn-primary project-link">Saber mais</a>
+                </div>
+                <div class="project-card glass" id="other-projects-card">
+                    <span class="project-badge training">Projetos de Treinamento</span>
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                        <h3>Outros Projetos</h3>
+                    </div>
+                    <div class="project-image-wrapper">
+                        <img src="assets/img/training-projects.png" alt="Projetos de Treinamento" class="project-image" loading="lazy" decoding="async">
+                    </div>
+                    <p>Projetos desenvolvidos para otimizar processos e aumentar produtividade. Incluem painéis visuais interativos, integração de tecnologias avançadas e sistemas de processamento inteligente. Soluções práticas que combinam inovação tecnológica com funcionalidades reais para resultados mensuráveis.</p>
+                    <a href="pages/other-projects.html" class="btn btn-primary project-link">Saber mais</a>
                 </div>
             </div>
             <div class="projects-note">
@@ -265,43 +242,66 @@
         </div>
     </section>
 
-    <!-- Education Section -->
-    <section class="education-section" id="education">
+    <section class="testimonials-section" id="testimonials" style="display: none;"></section>
+    
+    <section class="experience-section" id="experience" style="display: none;"></section>
+    
+    <section class="contact-section" id="contact" style="display: none;"></section>
+    
+    <section class="blog-section" id="blog" style="display: none;"></section>
+    
+    <section class="lost-projects-section" id="lost-projects">
         <div class="container">
             <h2 class="section-title">
-                <span class="title-icon">📚</span>
-                Formação Acadêmica
+                <span class="title-icon">📦</span>
+                Projetos Perdidos
             </h2>
-            <div class="education-timeline">
-                <div class="timeline-item glass">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h3>Escola Estadual Antonio Batista Belo de Carvalho</h3>
-                        <p class="timeline-period">Jan. de 2024 - Dez. de 2026</p>
-                        <p class="timeline-description">Instituição de Ensino Regular e Técnico</p>
+            <div class="projects-grid">
+                <div class="project-card glass">
+                    <span class="project-badge lost">Projeto Perdido</span>
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                                <line x1="8" y1="21" x2="16" y2="21"/>
+                                <line x1="12" y1="17" x2="12" y2="21"/>
+                            </svg>
+                        </div>
+                        <h3>Otimização Windows</h3>
                     </div>
+                    <p>Sistema de otimização desenvolvido em Lua com integração de DLLs nativas do Windows. Focado em melhorar performance de máquinas com recursos limitados, otimizando processos pesados e reduzindo tempo de resposta do sistema. Resultados comprovados em ambientes de produção.</p>
                 </div>
-                <div class="timeline-item glass">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h3>Curso de Inglês Conversação</h3>
-                        <p class="timeline-period">Jan. de 2023 - Dez. de 2023</p>
-                        <p class="timeline-description">Enjoy</p>
+                <div class="project-card glass">
+                    <span class="project-badge lost">Projeto Perdido</span>
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                        <h3>Automação Inteligente</h3>
                     </div>
+                    <p>Soluções de automação que utilizam processamento avançado de dados para análise de padrões e tomada de decisões. Experiência prática em configuração e ajuste fino de sistemas automatizados para aplicações empresariais reais.</p>
                 </div>
-                <div class="timeline-item glass">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h3>Curso de Informática</h3>
-                        <p class="timeline-period">Jan. de 2023 - Dez. de 2023</p>
-                        <p class="timeline-description">Enjoy</p>
+                <div class="project-card glass">
+                    <span class="project-badge lost">Projeto Perdido</span>
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                            </svg>
+                        </div>
+                        <h3>Integração de APIs</h3>
                     </div>
+                    <p>Desenvolvimento de sistemas que integram múltiplas APIs para criar soluções complexas e escaláveis. Experiência em combinação de diferentes serviços, processamento de dados e implementação de arquiteturas robustas para aplicações empresariais.</p>
                 </div>
+            </div>
+            <div class="projects-note">
+                <p><strong>Nota:</strong> Estes projetos foram perdidos, mas demonstram experiência prática em desenvolvimento de soluções técnicas complexas e integração de tecnologias avançadas.</p>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <p>&copy; 2024 Marcos Pereira. Todos os direitos reservados.</p>
